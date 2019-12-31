@@ -21,11 +21,15 @@ ValuetreeAttachmentsAudioProcessorEditor::ValuetreeAttachmentsAudioProcessorEdit
     slider.setRange (0.0, 1.0, 0.1);
     addAndMakeVisible (slider);
     
+    sliderAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.parameters, "SLIDER", slider);
+    
     //Int
     dial.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
     dial.setTextBoxStyle (Slider::TextEntryBoxPosition::TextBoxBelow, true, 50, 10);
     dial.setRange (0, 10, 1);
     addAndMakeVisible (dial);
+    
+    dialAttatchment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.parameters, "DIAL", dial);
     
     //Bool
     powerButton.setColour (TextButton::buttonColourId, Colours::red);
@@ -34,12 +38,16 @@ ValuetreeAttachmentsAudioProcessorEditor::ValuetreeAttachmentsAudioProcessorEdit
     powerButton.onClick = [this]() { };
     addAndMakeVisible (powerButton);
     
+    buttonAttatchment = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment>(processor.parameters, "POWER", powerButton);
+    
     //Choice
     choiceBox.addItem ("Choice1", 1);
     choiceBox.addItem ("Choice2", 2);
     choiceBox.addItem ("Choice3", 3);
     choiceBox.setJustificationType (Justification::centred);
     addAndMakeVisible (choiceBox);
+    
+    boxAttatchment = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.parameters, "CHOICE", choiceBox);
     
     setSize (400, 800);
 }

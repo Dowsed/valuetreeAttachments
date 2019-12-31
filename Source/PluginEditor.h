@@ -27,10 +27,18 @@ public:
     void resized() override;
 
 private:
+    //slider
     Slider slider;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
+    //dial
     Slider dial;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> dialAttatchment;
+    //button
     TextButton powerButton;
+    std::unique_ptr<AudioProcessorValueTreeState::ButtonAttachment> buttonAttatchment;
+    //box
     ComboBox choiceBox;
+    std::unique_ptr<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttatchment;
     
     ValuetreeAttachmentsAudioProcessor& processor;
 
